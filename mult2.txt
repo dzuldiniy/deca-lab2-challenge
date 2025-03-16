@@ -1,0 +1,28 @@
+// R0, R1 - SUM
+// R2, R3 - op2shifted
+// R4 - op1 R5 - op2
+
+EXT 0x15
+MOV R4, 0xBC
+EXT 0x06
+MOV R5, 0xEA
+MOV R0, #0
+MOV R1, #0
+MOV R2, R5
+MOV R3, #0
+
+CMP R4, #0
+JEQ 11
+
+MOV R6, R4
+AND R6, #1
+JEQ 3
+
+ADD R0, R0, R2
+ADC R1, R1, R3
+
+LSL R3, R3, #1
+LSL R2, R2, #1
+ADC R3, #0
+LSR R4, R4, #1
+JMP -11
